@@ -100,6 +100,17 @@ library TFHE {
         return euint4.wrap(Impl.mul(euint4.unwrap(a), euint4.unwrap(b), false));
     }
 
+    // Evaluate div(a, b) and return the result.
+    function div(euint4 a, euint4 b) internal returns (euint4) {
+        if (!isInitialized(a)) {
+            a = asEuint4(0);
+        }
+        if (!isInitialized(b)) {
+            b = asEuint4(0);
+        }
+        return euint4.wrap(Impl.div(euint4.unwrap(a), euint4.unwrap(b), false));
+    }
+
     // Evaluate and(a, b) and return the result.
     function and(euint4 a, euint4 b) internal returns (euint4) {
         if (!isInitialized(a)) {
@@ -891,7 +902,7 @@ library TFHE {
         if (!isInitialized(a)) {
             a = asEuint4(0);
         }
-        return euint4.wrap(Impl.div(euint4.unwrap(a), uint256(b)));
+        return euint4.wrap(Impl.div(euint4.unwrap(a), uint256(b), true));
     }
 
     // Evaluate rem(a, b) and return the result.
@@ -1854,7 +1865,7 @@ library TFHE {
         if (!isInitialized(a)) {
             a = asEuint8(0);
         }
-        return euint8.wrap(Impl.div(euint8.unwrap(a), uint256(b)));
+        return euint8.wrap(Impl.div(euint8.unwrap(a), uint256(b), true));
     }
 
     // Evaluate rem(a, b) and return the result.
@@ -2817,7 +2828,7 @@ library TFHE {
         if (!isInitialized(a)) {
             a = asEuint16(0);
         }
-        return euint16.wrap(Impl.div(euint16.unwrap(a), uint256(b)));
+        return euint16.wrap(Impl.div(euint16.unwrap(a), uint256(b), true));
     }
 
     // Evaluate rem(a, b) and return the result.
@@ -3780,7 +3791,7 @@ library TFHE {
         if (!isInitialized(a)) {
             a = asEuint32(0);
         }
-        return euint32.wrap(Impl.div(euint32.unwrap(a), uint256(b)));
+        return euint32.wrap(Impl.div(euint32.unwrap(a), uint256(b), true));
     }
 
     // Evaluate rem(a, b) and return the result.
@@ -4743,7 +4754,7 @@ library TFHE {
         if (!isInitialized(a)) {
             a = asEuint64(0);
         }
-        return euint64.wrap(Impl.div(euint64.unwrap(a), uint256(b)));
+        return euint64.wrap(Impl.div(euint64.unwrap(a), uint256(b), true));
     }
 
     // Evaluate rem(a, b) and return the result.

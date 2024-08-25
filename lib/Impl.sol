@@ -81,8 +81,13 @@ library Impl {
         result = IFHEVMCoprocessor(fhevmCoprocessorAdd).fheMul(lhs, rhs, scalarByte);
     }
 
-    function div(uint256 lhs, uint256 rhs) internal returns (uint256 result) {
-        bytes1 scalarByte = 0x01;
+    function div(uint256 lhs, uint256 rhs, bool scalar) internal returns (uint256 result) {
+        bytes1 scalarByte;
+        if (scalar) {
+            scalarByte = 0x01;
+        } else {
+            scalarByte = 0x00;
+        }
         result = IFHEVMCoprocessor(fhevmCoprocessorAdd).fheDiv(lhs, rhs, scalarByte);
     }
 
