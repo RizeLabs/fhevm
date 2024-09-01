@@ -945,6 +945,13 @@ library TFHE {
         return euint4.wrap(Impl.div(euint4.unwrap(a), uint256(b), true));
     }
 
+    function req(ebool a) internal returns (euint4) {
+        if (!isInitialized(a)) {
+            a = asEbool(0);
+        }
+        return ebool.wrap(Impl.req(ebool.unwrap(a), false));
+    }
+
     // Evaluate rem(a, b) and return the result.
     function rem(euint4 a, uint8 b) internal returns (euint4) {
         if (!isInitialized(a)) {
