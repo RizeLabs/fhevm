@@ -91,6 +91,16 @@ library Impl {
         result = IFHEVMCoprocessor(fhevmCoprocessorAdd).fheDiv(lhs, rhs, scalarByte);
     }
 
+    function req(uint256 lhs, bool scalar) internal pure {
+        bytes1 scalarByte;
+        if (scalar) {
+            scalarByte = 0x01;
+        } else {
+            scalarByte = 0x00;
+        }
+        result = IFHEVMCoprocessor(fhevmCoprocessorAdd).fheReq(lhs, scalarByte);
+    }
+
     function rem(uint256 lhs, uint256 rhs) internal returns (uint256 result) {
         bytes1 scalarByte = 0x01;
         result = IFHEVMCoprocessor(fhevmCoprocessorAdd).fheRem(lhs, rhs, scalarByte);

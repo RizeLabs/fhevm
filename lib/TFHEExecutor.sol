@@ -90,6 +90,15 @@ contract TFHEExecutor {
         result = FhevmLib(address(EXT_TFHE_LIBRARY)).fheShr(lhs, rhs, scalarByte);
         acl.allowTransient(result, msg.sender);
     }
+    function fheReq(uint256 lhs, bytes1 scalarByte) pure {
+        require(acl.isAllowed(lhs, msg.sender));
+
+        if (scalarByte == 0x00) {
+            require(acl.isAllowed(rhs, msg.sender));
+        }
+
+        result = FhevmLib(address(EXT_TFHE_LIBRARY)).fheReq(lhs, scalarByte);
+    }
     function fheRotl(uint256 lhs, uint256 rhs, bytes1 scalarByte) external returns (uint256 result) {
         require(acl.isAllowed(lhs, msg.sender));
 
